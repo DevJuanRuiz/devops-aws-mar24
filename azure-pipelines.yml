@@ -1,0 +1,34 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: Maven@4
+  inputs:
+    mavenPomFile: 'pom.xml'
+    publishJUnitResults: false
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.17'
+    mavenVersionOption: 'Default'
+    mavenAuthenticateFeed: false
+    effectivePomSkip: false
+    sonarQubeRunAnalysis: false
+###########################################################
+#############################CI############################
+###########################################################
+- task: Docker@2
+  inputs:
+    containerRegistry: 'CN_MY_DOCKER_HUB'
+    repository: 'pipelineazure-servicesjava'
+    command: 'buildAndPush'
+    Dockerfile: 'Dockerfile'
+    tags: |
+      latest
+      $(Build.BuildId)
