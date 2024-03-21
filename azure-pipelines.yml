@@ -26,7 +26,7 @@ steps:
 - task: Docker@2
   inputs:
     containerRegistry: 'CN_MY_DOCKER_HUB'
-    repository: 'pipelineazure-servicesjava'
+    repository: 'juanruiz210494/pipelineazure-servicesjava'
     command: 'buildAndPush'
     Dockerfile: 'Dockerfile'
     tags: |
