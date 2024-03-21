@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: service-devops
-        image: juanruiz210494/servicejava:latest
+        image: juanruiz210494/pipelineazure-servicesjava:latest
         ports:
         - containerPort: 8080
 ---
